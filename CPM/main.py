@@ -48,10 +48,12 @@ if __name__ == "__main__":
         output = model.render_texture(new_txt)
         output = model.blend_imgs(model.face, output, alpha=1)
 
-    x2, y2, x1, y1 = model.location_to_crop()
-    output = np.concatenate([imgB[x2:], model.face[x2:], output[x2:]], axis=1)
+    # x2, y2, x1, y1 = model.location_to_crop()
+    # output = np.concatenate([imgB[x2:], model.face[x2:], output[x2:]], axis=1)
 
-    Image.fromarray((output).astype("uint8")).save('result.png')
+    save_path = args.savedir + args.filename
+
+    Image.fromarray((output).astype("uint8")).save(save_path)
 
     save_path = "저장 완료"
 
