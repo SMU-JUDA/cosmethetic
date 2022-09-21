@@ -46,10 +46,10 @@ def logout(request):
 def home(request):
     return render(request, '/')
 
-class ProfileView(DetailView):
-    context_object_name = 'profile_user'
-    model = User
-    template_name = 'accounts/profile.html'
+class ProfileDetailView(View):
+    def get(self, request):
+        user = get_object_or_404(User, pk=request.user.pk)
+        return render(request, 'accounts/profile.html', {"profile_user":user})
 
 class ProfileUpdateView(View):
     def get(self, request):
@@ -90,4 +90,4 @@ class ProfileUpdateView(View):
             profile.user = u
             profile.save()
 
-        return redirect('accounts:profile', pk=request.user.pk)
+        return redirect('accounts:profile')

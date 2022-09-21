@@ -11,6 +11,11 @@ def makeup_list(request):
     makeups = Makeup.objects.all()
     return render(request, 'makeups/index.html', {'makeups': makeups})
 
+def makeup_detail(request, pk):
+    makeup = Makeup.objects.get(pk=pk)
+    products = makeup.products.all()
+    return render(request, 'makeups/makeup_detail.html', {'object': makeup, 'products': products})
+
 def virtual_makeup(request, pk):
     makeup = Makeup.objects.get(pk=pk)
 

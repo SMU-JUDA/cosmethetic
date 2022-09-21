@@ -4,11 +4,12 @@ from products.models import Product
 import reserve as reserve
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models import ImageField
 
 class Makeup(Timestamp):
-    # product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = ImageField(upload_to='reference')
+    products = models.ManyToManyField(Product, related_name="product")
+    image = models.ImageField(upload_to='reference')
+    title = models.CharField(max_length=100)
+    detail = models.TextField()
 
     def get_absolute_url(self):
         return reserve('makeups:makeup_detail', args=[str(self.id)])

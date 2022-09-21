@@ -25,14 +25,14 @@
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <!-- Product name-->
-                                        <!-- <h5 class="fw-bolder">{{ product.name }}</h5> -->
+                                        <h5 class="fw-bolder">{{ makeup.title }}</h5>
                                         <!-- Product price-->
                                         <!-- {{ product.price }} 원 -->
                                     </div>
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'makeups:makeup_detail' pk=makeup.id %}">View products</a></div>
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'makeups:makeup_detail' pk=makeup.id %}">자세히 보기</a></div>
                                 </div>
                             </div>
                         </div>
