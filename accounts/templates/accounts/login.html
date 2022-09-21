@@ -6,18 +6,25 @@
         <form method="POST">
             <div class="d-flex justify-content-center">
                 <h1>로그인</h1>
-            </div>
+            </div><br>
             {% csrf_token %}
-            ID:
-            <br>
-            <input name="username" type="text">
-            <br>
-            Password:
-            <br>
-            <input name="password" type="password">
-            <br><br>
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" placeholder="아이디">
+            </div><br>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password1" placeholder="비밀번호">
+            </div><br>
+
+{#            ID:#}
+{#            <br>#}
+{#            <input name="username" type="text">#}
+{#            <br>#}
+{#            Password:#}
+{#            <br>#}
+{#            <input name="password" type="password">#}
+{#            <br><br>#}
             <div class="d-flex justify-content-center">
-                <input type="submit" class="btn btn-dark" value="Login">
+                <input type="submit" class="btn btn-secondary btn-lg btn-block" value="Login">
             </div>
         </form>
     </div>
