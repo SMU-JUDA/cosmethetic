@@ -9,6 +9,7 @@ app_name = 'makeups'
 
 urlpatterns = [
     path('', makeup_list, name='makeup_list'),
+    path('intro/', makeup_intro, name='makeup_intro'),
     path('detail/<int:pk>/', DetailView.as_view(model=Makeup, template_name='makeups/makeup_detail.html'), name='makeup_detail'),
     path('detail/<int:pk>/makeup/',virtual_makeup, name='virtual_makeup'),
 ]
