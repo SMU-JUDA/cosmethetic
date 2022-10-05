@@ -1,6 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block style %}
+
+<style>
+    .pop_wrap{
+        background-color:rgba(0,0,0,.3); 
+        justify-content:center; 
+        align-items:center;   
+        position:fixed;   
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;               
+        display:none; 
+        padding:15px; 
+    }  
+
+    .pop_inner {
+        border-radius:10px;
+        background-color:#ffffff; 
+        padding:30px; 
+        box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); 
+    }
+</style>
+
+{% endblock %}
+
 {% block content %}
     <div class="d-flex justify-content-center d-block p-3 bg-dark text-white">
             <h3> 장바구니</h3>
@@ -20,7 +46,7 @@
     </div>
     {% else %}
     <div class="row mx-auto">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <div class="col-20 col-sm-15 col-md-15 col-lg-10 text-center">
             <table class="table my_custom_table">
                 <thread class="my_custom_thread">
                     <tr>
@@ -65,7 +91,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <div class="col-20 col-sm-15 col-md-15 col-lg-10 text-center">
             <table class="table my_custom_table">
                 <thread class="my_custom_thread">
                     <tr>
@@ -89,24 +115,53 @@
             </table>
             <div class="mx-auto">
                 <a href="{% url 'products:product_list' %}" class="btn btn-secondary btn-block my_custom_button">쇼핑 계속하기</a>
+                <a href="#pop_info_1" class="btn_open btn btn-secondary btn-block my_custom_button">주문하기</a>
             </div>
             <br>
         </div>
     </div>
 
-    <div class="text-center">
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-        </br>
-            {{ order_form.as_p }}
-            <div class="d-flex justify-content-center">
-                <br>
-                <input class="btn btn-dark" type="submit" value="주문하기" />
+    
+    <div id="pop_info_1" class="pop_wrap">
+        <div class="text-center">
+            <div class="pop_inner">
+                    <h4>주문 정보 입력</h4>
+
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                </br>
+                    {{ order_form.as_p }}
+                    <div class="d-flex justify-content-center">
+                        <br>
+                        <input class="btn btn-dark" type="submit" value="주문하기" />
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 
     <br>
     {% endif %}
 
+    
+    <script>
+        var target = document.querySelectorAll('.btn_open');
+        var targetID;
+      
+        // 팝업 열기
+        for(var i = 0; i < target.length; i++){
+          target[i].addEventListener('click', function(){
+            targetID = this.getAttribute('href');
+            document.querySelector(targetID).style.display = 'block';
+          });
+        }
+        
+        // 팝업 닫기
+        for(var j = 0; j < target.length; j++){
+          btnPopClose[j].addEventListener('click', function(){
+            this.parentNode.parentNode.style.display = 'none';
+          });
+        }
+      </script>
+      
 {% endblock %}

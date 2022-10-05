@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render, redirect, get_object_or_404
 from products.models import Product
@@ -16,6 +17,7 @@ def get_cart_id(request):
     
     return cart
 
+@login_required(login_url="/login")
 def add_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     try:
@@ -44,6 +46,7 @@ def add_cart(request, product_id):
 
     return redirect('carts:cart_detail')
 
+@login_required(login_url="/login")
 def cart_detail(request, total=0, counter=0, cart_items = None):
     try:
         cart = Cart.objects.get(cart_id=get_cart_id(request))
@@ -93,6 +96,7 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
 
     return render(request, 'carts/cart.html', dict(cart_items = cart_items, total = total, counter = counter, order_form = OrderForm))
 
+@login_required(login_url="/login")
 def cart_remove(request, product_id):
     cart = Cart.objects.get(cart_id = get_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
@@ -107,6 +111,7 @@ def cart_remove(request, product_id):
     
     return redirect('carts:cart_detail')
 
+@login_required(login_url="/login")
 def cart_all_remove(request, product_id):
     cart = Cart.objects.get(cart_id = get_cart_id(request))
     product = get_object_or_404(Product, id=product_id)

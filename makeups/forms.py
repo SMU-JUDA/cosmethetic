@@ -7,7 +7,7 @@ from  products.models import Product
 class MakeupModelForm(ModelForm):
     class Meta:
         model = Makeup
-        fields = '__all__' 
+        fields = '__all__'
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),

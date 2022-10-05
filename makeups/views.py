@@ -1,5 +1,6 @@
 import os
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import redirect
@@ -13,6 +14,7 @@ def makeup_list(request):
     makeups = Makeup.objects.all()
     return render(request, 'makeups/index.html', {'makeups': makeups})
 
+@login_required(login_url="/login")
 def makeup_register(request):
     if request.method == 'POST':
         form = MakeupModelForm(request.POST, request.FILES)
@@ -41,6 +43,7 @@ def makeup_detail(request, pk):
     products = makeup.products.all()
     return render(request, 'makeups/makeup_detail.html', {'object': makeup, 'products': products})
 
+@login_required(login_url="/login")
 def virtual_makeup(request, pk):
     makeup = Makeup.objects.get(pk=pk)
 

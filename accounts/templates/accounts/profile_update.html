@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 <div class="d-flex justify-content-center d-block p-3 bg-dark text-white">
     <h3>{{user.username}}의 Profile Update</h3>
@@ -14,8 +16,9 @@
             {% endif %}
             <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
                 </br>
-                {{ user_form.as_p }}
-                {{ profile_form.as_p }}
+                {{ user_form | crispy }}
+                {{ profile_form  | crispy }}
+                <br/>
                 <div class="d-flex justify-content-center">
                     <input class="btn btn-dark" type="submit" value="Update" />
                 </div>

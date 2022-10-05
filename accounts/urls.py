@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .views import *
 from .models import Profile
@@ -10,5 +10,5 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('profile/', ProfileDetailView.as_view(), name="profile"),
-    path('profile/update/', ProfileUpdateView.as_view(), name="profile-update")
+    path('profile/update/', ProfileUpdateView.as_view(), name="profile-update"), 
 ]
