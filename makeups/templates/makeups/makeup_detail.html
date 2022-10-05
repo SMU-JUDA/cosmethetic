@@ -14,7 +14,7 @@
                     <p>{{ object.detail }}</p>
                     {% if user.is_authenticated %}
                     <a href="{% url 'makeups:virtual_makeup' pk=object.id %}"><button type="button" class="btn btn-dark">메이크업 해보기</button></a>
-                    <button type="button" class="btn btn-outline-dark">연락하기</button>
+                    <!-- <button type="button" class="btn btn-outline-dark">연락하기</button> -->
                     {% endif %}
                 </div>
             </div>

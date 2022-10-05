@@ -8,6 +8,7 @@ app_name = 'makeups'
 
 urlpatterns = [
     path('', makeup_list, name='makeup_list'),
+    path('makeups/', makeup_register, name='makeup_register'), 
     path('makeups/detail/<int:pk>/', makeup_detail, name='makeup_detail'),
     path('makeups/detail/<int:pk>/makeup/',virtual_makeup, name='virtual_makeup'),
 ]

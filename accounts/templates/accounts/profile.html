@@ -14,11 +14,11 @@
                     </br>
                 </div>
                 <div class="col">
-                    <h2> ID: {{profile_user.username}} </h2>
+                    <h3> ID: {{profile_user.username}} </h3>
                     <hr>
-                    <h3>닉네임: {{profile_user.profile.nickname}}</h3>
-                    <h3> 이름: {{profile_user.last_name}} {{profile_user.first_name}} </h3>
-                    <h3> bio: {{profile_user.profile.bio}} </h3>
+                    <h5>닉네임: {{profile_user.profile.nickname}}</h5>
+                    <h5> 이름: {{profile_user.last_name}} {{profile_user.first_name}} </h5>
+                    <h5> 소개: {{profile_user.profile.bio}} </h5>
                     </br>
                     <div class="d-flex justify-content-center">
                         {% if user == profile_user %}

@@ -6,7 +6,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Makeup(Timestamp):
-    products = models.ManyToManyField(Product, related_name="product")
+    products = models.ManyToManyField(Product, blank=True)
     image = models.ImageField(upload_to='reference')
     title = models.CharField(max_length=100)
     detail = models.TextField()

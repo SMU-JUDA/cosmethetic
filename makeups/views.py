@@ -5,11 +5,36 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import redirect
 
 from accounts.models import Profile
+
 from .models import Makeup
+from .forms import MakeupModelForm 
 
 def makeup_list(request):
     makeups = Makeup.objects.all()
     return render(request, 'makeups/index.html', {'makeups': makeups})
+
+def makeup_register(request):
+    if request.method == 'POST':
+        form = MakeupModelForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+            makeup = Makeup.objects.create(
+                image=data['image'],
+                title=data['title'],
+                detail=data['detail'],
+            )
+
+            products = data.get('products')
+            for product in products.iterator():
+                makeup.products.add(product)
+
+            makeup.save()
+
+            return redirect('makeups:makeup_detail', pk=makeup.id)
+    else:
+        form = MakeupModelForm()
+    return render(request, 'makeups/makeup_register.html', {'form': form})
+
 
 def makeup_detail(request, pk):
     makeup = Makeup.objects.get(pk=pk)

@@ -14,7 +14,6 @@
                     <p>{{ object.price }} 원</p>
                     <p>{{ object.description }}</p>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'makeups:virtual_makeup' pk=object.id %}"><button type="button" class="btn btn-dark">구매하기</button></a>
                     <a href="{% url 'carts:add_cart' product_id=object.id %}"><button type="button" class="btn btn-outline-dark">장바구니</button></a>
                     {% endif %}
                 </div>
